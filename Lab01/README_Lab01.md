@@ -1,10 +1,24 @@
 # Cloud Computing
 ## LAB 01  Create and Configure an IAM User in AWS
 
+creating and configuring an IAM user
+
+defining policies to assign permissions
+
+Setting up user Password
+
+setting up access keys
+
+configuring the AWS CLI for seamless access to AWS resources
+
+Change the user password
+
+How to install and test Linux AWS CLI 
 
 
-# AWS SDK Code Examples
-This repository contains code examples that demonstrate how to use the AWS SDKs to interact with AWS services.
+# Creating an IAM User (TestUser_01)
+Log in to the AWS Management Console as the **root** user.
+
 
 ## Invoke example code
 
