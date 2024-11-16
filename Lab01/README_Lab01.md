@@ -59,16 +59,98 @@ Policy Name: **Full-Access-to-EKS-For-StudentUser01**
 Policy Name: **Sufficient-Access-For-StudentUser01**
 ```
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "VisualEditor0",
-			"Effect": "Allow",
-			"Action": "eks:*",
-			"Resource": "*"
-		}
-	]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "iam:UpdateAssumeRolePolicy",
+                "iam:GetPolicyVersion",
+                "iam:TagRole",
+                "application-autoscaling:*",
+                "cloudsearch:*",
+                "logs:*",
+                "iam:UpdateOpenIDConnectProviderThumbprint",
+                "dynamodb:*",
+                "iam:CreateRole",
+                "iam:AttachRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:AddRoleToInstanceProfile",
+                "codebuild:*",
+                "servicediscovery:*",
+                "cloudfront:*",
+                "iam:ListSSHPublicKeys",
+                "iam:SimulateCustomPolicy",
+                "iam:SimulatePrincipalPolicy",
+                "route53domains:*",
+                "secretsmanager:*",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListOpenIDConnectProviderTags",
+                "iam:UploadSSHPublicKey",
+                "iam:ListRolePolicies",
+                "iam:DeleteOpenIDConnectProvider",
+                "events:*",
+                "sns:*",
+                "iam:GetRole",
+                "iam:GetPolicy",
+                "apigateway:*",
+                "iam:RemoveClientIDFromOpenIDConnectProvider",
+                "cloudformation:*",
+                "iam:UpdateSSHPublicKey",
+                "autoscaling-plans:*",
+                "iam:GetUserPolicy",
+                "cloudwatch:*",
+                "servicequotas:*",
+                "ecs:*",
+                "ec2:*",
+                "iam:GetGroupPolicy",
+                "eks:*",
+                "iam:GetOpenIDConnectProvider",
+                "ce:*",
+                "iam:GetRolePolicy",
+                "iam:CreateInstanceProfile",
+                "cloudtrail:*",
+                "iam:DeleteSSHPublicKey",
+                "sqs:*",
+                "pricing:GetProducts",
+                "iam:PassRole",
+                "sagemaker:*",
+                "access-analyzer:ValidatePolicy",
+                "iam:GetInstanceProfile",
+                "s3:*",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPolicy",
+                "iam:GetSSHPublicKey",
+                "iam:ListRoles",
+                "sts:*",
+                "elasticloadbalancing:*",
+                "iam:ListInstanceProfiles",
+                "support:*",
+                "iam:CreateOpenIDConnectProvider",
+                "iam:CreatePolicy",
+                "es:*",
+                "iam:CreateServiceLinkedRole",
+                "iam:ListOpenIDConnectProviders",
+                "iam:AttachGroupPolicy",
+                "ssm:*",
+                "route53:*",
+                "lambda:*",
+                "ecr:*",
+                "iam:UntagOpenIDConnectProvider",
+                "iam:AddClientIDToOpenIDConnectProvider",
+                "iam:TagOpenIDConnectProvider",
+                "iam:DeletePolicyVersion",
+                "acm:*",
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:UpdateAutoScalingGroup",
+                "compute-optimizer:GetEnrollmentStatus"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
+
 ```
 
  
