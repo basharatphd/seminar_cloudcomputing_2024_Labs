@@ -19,6 +19,12 @@ How to install and test Linux AWS CLI
 # Creating an IAM User (TestUser_01)
 Log in to the AWS Management Console as the **root** user.
 
+We don't use the root user (bad practice)
+
+We need a user who should have 
+- right builtin policies to access EC2 machines
+- right custom policy to access Kubernetes services
+- right custom policy to start a load balancer 
 
 ## Invoke example code
 
