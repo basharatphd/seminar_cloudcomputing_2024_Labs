@@ -16,7 +16,7 @@ Change the user password
 How to install and test Linux AWS CLI 
 
 
-# Creating an IAM User (TestUser_01)
+# Creating an IAM User (StudentUser01)
 Log in to the AWS Management Console as the **root** user.
 
 We don't use the root user (bad practice)
@@ -38,7 +38,40 @@ We need a user who should have
 a. Built-in Policies: Choose following relevant built-in policies:
 	- AmazonEC2FullAccess
 	- AmazonS3FullAccess
+b. Custom Policies: Write the JSON of following policy:
+- Select *Add Permissions > Create Customer Policy* to attach new permissions, open the *JSON* editor and paste in the below example policy:
+Policy Name: **Full-Access-to-EKS-For-StudentUser01**
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": "eks:*",
+			"Resource": "*"
+		}
+	]
+}
+```
+):
+- Select *Add Permissions > Create Customer Policy* to attach new permissions, open the *JSON* editor and paste in the below example policy:
+Policy Name: **Sufficient-Access-For-StudentUser01**
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": "eks:*",
+			"Resource": "*"
+		}
+	]
+}
+```
 
+ 
  
 ## Invoke example code
 
