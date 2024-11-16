@@ -26,6 +26,20 @@ We need a user who should have
 - right custom policy to access Kubernetes services
 - right custom policy to start a load balancer 
 
+**Steps**
+- Go to IAM service (Identity and Access Management).
+- Select Users and click Add user.
+- Enter the username as 'TestUser_0x’.
+- Select Programmatic access to enable the generation of an Access key ID and Secret access key.
+- Proceed to permissions.
+
+**Assigning Policies**
+- Under the permissions section, assign both built-in and custom policies:
+a. Built-in Policies: Choose following relevant built-in policies:
+	- AmazonEC2FullAccess
+	- AmazonS3FullAccess
+
+ 
 ## Invoke example code
 
 To invoke this example code, you must have an AWS account. For more information about creating an account, see [AWS Free Tier](https://aws.amazon.com/free/).
