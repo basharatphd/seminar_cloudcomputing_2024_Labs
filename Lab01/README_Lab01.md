@@ -39,7 +39,7 @@ a. Built-in Policies: Choose following relevant built-in policies:
 	- AmazonEC2FullAccess
 	- AmazonS3FullAccess
 b. Custom Policies: Write the JSON of following policy:
-- Select *Add Permissions > Create Customer Policy* to attach new permissions, open the *JSON* editor and paste in the below example policy:
+- Select *Add Permissions > Create Customer Managed Policy* to attach new permissions, open the *JSON* editor and paste in the below example policy:
 Policy Name: **Full-Access-to-EKS-For-StudentUser01**
 ```
 {
@@ -55,7 +55,7 @@ Policy Name: **Full-Access-to-EKS-For-StudentUser01**
 }
 ```
 ):
-- Select *Add Permissions > Create Customer Policy* to attach new permissions, open the *JSON* editor and paste in the below example policy:
+- Select *Add Permissions > Create Customer Managed Policy* to attach new permissions, open the *JSON* editor and paste in the below example policy:
 Policy Name: **Sufficient-Access-For-StudentUser01**
 ```
 {
