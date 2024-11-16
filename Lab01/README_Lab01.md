@@ -15,6 +15,12 @@ Change the user password
 
 How to install and test Linux AWS CLI 
 
+## Invoke this lab - prerequisites
+
+To invoke this example code, you must have an AWS account. For more information about creating an account, see [AWS Free Tier](https://aws.amazon.com/free/).
+
+You must also have AWS credentials configured. For steps on using the AWS Command Line Interface (AWS CLI) to configure credentials, see [CLI Configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+
 
 # Creating an IAM User (StudentUser01)
 Log in to the AWS Management Console as the **root** user.
@@ -155,12 +161,6 @@ Policy Name: **Sufficient-Access-For-StudentUser01**
 
  
  
-## Invoke example code
-
-To invoke this example code, you must have an AWS account. For more information about creating an account, see [AWS Free Tier](https://aws.amazon.com/free/).
-
-You must also have AWS credentials configured. For steps on using the AWS Command Line Interface (AWS CLI) to configure credentials, see [CLI Configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
-
 ## Getting Started
 
 To get started with the code examples, ensure you have access to [Amazon Bedrock](https://aws.amazon.com/bedrock/). Then clone this repo and navigate to one of the folders above. Detailed instructions are provided in each folder's README.
