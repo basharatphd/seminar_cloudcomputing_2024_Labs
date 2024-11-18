@@ -222,32 +222,166 @@ aws sts get-caller-identity
 ```
 
  
-## Getting Started
+## Pert 2: Django Application in VSCode
 
-To get started with the code examples, ensure you have access to [Amazon Bedrock](https://aws.amazon.com/bedrock/). Then clone this repo and navigate to one of the folders above. Detailed instructions are provided in each folder's README.
+To get started with the code examples, ensure you have VSCode, Python installed on Ubuntu
 
-### Enable AWS IAM permissions for Bedrock
+## ---------------Install VSCode ----------------
+VS Code
+Go to 'Preferences > Keyboard Shortcuts'
+Set the 'Terminal: Copy Selection' keybindings to Ctrl-C.
+Set the 'Terminal: Paste into Active Terminal' keybinding to Ctrl-V.
 
-The AWS identity you assume from your environment (which is the [*Studio/notebook Execution Role*](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) from SageMaker, or could be a role or IAM User for self-managed notebooks or other use-cases), must have sufficient [AWS IAM permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) to call the Amazon Bedrock service.
+## ---------------DJango App-------------------
+**Step 1: APP Start Commands**
+Create an Empty Folder: StudentUser90_App
+```
+python -m venv .venv
+```
+```
+ls -a
+```
+activate the environment
+```
+. .venv/bin/activate
+```
+```
+pip install django
+```
+```
+django-admin startproject student_project
+cd student_project
+```
+```
+python manage.py startapp studentApp
+```
+In student_project/settings.py>> 'studentApp' to the INSTALLED_APPS  
 
-To grant Bedrock access to your identity, you can:
+**Step 2: Define the Student Model**
+1. In students/models.py>> 
+```
+from django.db import models
 
-- Open the [AWS IAM Console](https://us-east-1.console.aws.amazon.com/iam/home?#)
-- Find your [Role](https://us-east-1.console.aws.amazon.com/iamv2/home?#/roles) (if using SageMaker or otherwise assuming an IAM Role), or else [User](https://us-east-1.console.aws.amazon.com/iamv2/home?#/users)
-- Select *Add Permissions > Create Inline Policy* to attach new inline permissions, open the *JSON* editor and paste in the below example policy:
+class Student(models.Model):
+       first_name = models.CharField(max_length=50)
+       last_name = models.CharField(max_length=50)
+       age = models.IntegerField()
+
+       def __str__(self):
+           return f"{self.first_name} {self.last_name}
+```
+2. Create SQLLITE Database Tables by migration commands:
+```
+python manage.py makemigrations studentApp
+python manage.py migrate
+```
+4. Run the server for now:
+```
+python manage.py runserver
+```
+
+----------Adding forms Student List and Add --------
+**Step 3: Create a Form for the Student Model**
+1. In studentApp/forms.py (create this file if it doesn't exist):
+```
+from django import forms
+from .models import Student
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ['first_name', 'last_name', 'age']
 
 ```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "BedrockFullAccess",
-            "Effect": "Allow",
-            "Action": ["bedrock:*"],
-            "Resource": "*"
-        }
-    ]
-}
+**Step 4: Create a View to Handle the Form**
+In students/views.py:
+```
+from django.shortcuts import render, redirect
+from .forms import StudentForm
+from .models import Student
+
+def student_add_view(request):
+       if request.method == 'POST':
+           form = StudentForm(request.POST)
+           if form.is_valid():
+               form.save()
+               return redirect('student_success')
+       else:
+           form = StudentForm()
+       return render(request, 'students/student_add.html', {'form': form})
+
+def student_add_success_view (request):
+    return render(request, 'students/student_add_success.html')
+
+def student_list_view(request):
+    students = Student.objects.all()
+    return render(request, 'students/student_list.html', {'students': students})
+```
+----
+**Step 5: Create Templates for the Form**
+1. Inside your students app directory, create a new folder named templates. Inside this, create another folder named students (to organize templates related to the students app).
+2. Create  students/templates/students/student_add.html:
+```
+<h2>Enter Student Details</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+```
+3. Create students/student_add_success.html:
+```
+<h2>Student has been added successfully!</h2>
+```
+4. Create the Template for listing students in `students/templates/students/student_list.html`:
+```
+   <h2>Student List</h2>
+<table>
+    <tr><th>First Name</th><th>Last Name</th><th>Age</th><th>Actions</th></tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.first_name }}</td>
+        <td>{{ student.last_name }}</td>
+        <td>{{ student.age }}</td>
+   
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'student_add' %}">Add New Student</a>
 ```
 
-> ⚠️ **Note 1:** With Amazon SageMaker, your notebook execution role will typically be *separate* from the user or role that you log in to the AWS Console with. If you'd like to explore the AWS Console for Amazon Bedrock, you'll need to grant permissions to your Console user/role too.
+----
+Step 9: Configure URLs
+1. In students/urls.py (create this file if it doesn't exist):
+```
+from django.urls import path
+from .views import student_add_view, student_add_success_view
+
+urlpatterns = [
+    path('add/', student_add_view, name='student_add'),
+    path('success/', student_add_success_view, name='student_success'),
+]
+```
+2. Include the students URLs in the main urls.py of student_project:
+```
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+path('admin/', admin.site.urls),
+path('students/', include('studentApp.urls')),
+]
+```
+3. Update the URLs in `students/urls.py`:
+```
+from .views import student_list_view
+
+urlpatterns = [
+path('add/', student_add_view, name='student_add'),
+path('success/', student_add_success_view, name='student_success'),
+path('list/', student_list_view, name='student_list'),
+]
+```
+
+
+ 
