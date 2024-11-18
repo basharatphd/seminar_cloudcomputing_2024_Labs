@@ -234,6 +234,8 @@ Set the 'Terminal: Copy Selection' keybindings to Ctrl-C.
 
 Set the 'Terminal: Paste into Active Terminal' keybinding to Ctrl-V.
 
+sudo systemctl restart gdm3
+
 ## ---------------DJango App-------------------
 **Step 1: APP Start Commands**
 Create an Empty Folder: StudentUser90_App
