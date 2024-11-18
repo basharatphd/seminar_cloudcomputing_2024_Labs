@@ -62,7 +62,7 @@ Policy Name: **Full-Access-to-EKS-For-StudentUser01**
 ```
 ):
 - Select *Add Permissions > Create Customer Managed Policy* to attach new permissions, open the *JSON* editor and paste in the below example policy:
-Policy Name: **Sufficient-Access-For-StudentUser01**
+Policy Name: **Sufficient-treasure-access-For-StudentUser01**
 ```
 {
     "Version": "2012-10-17",
@@ -158,8 +158,30 @@ Policy Name: **Sufficient-Access-For-StudentUser01**
 }
 
 ```
+## Create a cutom ROLE (type: Cutom trust policy)
+My-role-prod-mfa-For-StudentUser01
+Assign it **Sufficient-treasure-access-For-StudentUser01** policy
+Make a trusted relationship to the user
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::528383356345:user/StudentUser03"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "Bool": {
+                    "aws:MultiFactorAuthPresent": "true"
+                }
+            }
+        }
+    ]
+}
 
- 
+```
  
 ## Getting Started
 
