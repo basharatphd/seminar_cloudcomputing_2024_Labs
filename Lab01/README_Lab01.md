@@ -229,7 +229,9 @@ To get started with the code examples, ensure you have VSCode, Python installed 
 ## ---------------Install VSCode ----------------
 VS Code
 Go to 'Preferences > Keyboard Shortcuts'
+
 Set the 'Terminal: Copy Selection' keybindings to Ctrl-C.
+
 Set the 'Terminal: Paste into Active Terminal' keybinding to Ctrl-V.
 
 ## ---------------DJango App-------------------
