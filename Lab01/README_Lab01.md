@@ -160,7 +160,9 @@ Policy Name: **Sufficient-treasure-access-For-StudentUser01**
 ```
 ## Create a cutom ROLE (type: Cutom trust policy)
 My-role-prod-mfa-For-StudentUser01
+
 Assign it **Sufficient-treasure-access-For-StudentUser01** policy
+
 Make a trusted relationship to the user
 ```
 {
@@ -169,7 +171,7 @@ Make a trusted relationship to the user
         {
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::528383356345:user/StudentUser03"
+                "AWS": "arn:aws:iam::528383356345:user/StudentUser01"
             },
             "Action": "sts:AssumeRole",
             "Condition": {
@@ -180,8 +182,45 @@ Make a trusted relationship to the user
         }
     ]
 }
-
 ```
+## Create an inline policy in the user
+STS-Custom-policy-For-StudentUser01
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"sts:AssumeRole"
+			],
+			"Resource": [
+				"arn:aws:iam::528383356345:role/StudentUser01"
+			]
+		}
+	]
+}
+```
+Notedown user credentials and access keys
+User name	Password	Console sign-in URL
+StudentUser90	aUKU81|k	https://528383356345.signin.aws.amazon.com/console
+
+Access key ID	Secret access key
+AKIAXWBQ2FW4ZG6UFYHH	IMS5fkDQbZksOEYk0Mn/gDW8Nlz7T744xYk40j2U
+
+-- login and check the user from web console - see its permissions:
+user can view EC2 service resources
+user cannot view IAM service 
+
+-- login usign Linux AWS CLI (Ubumtu 42.04 LTS OS)
+CLI client:>> 
+```
+aws configure
+```
+```
+aws sts get-caller-identity
+```
+
  
 ## Getting Started
 
