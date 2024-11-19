@@ -21,6 +21,20 @@ To invoke this example code, you must have an AWS account. For more information 
 
 You must also have AWS credentials configured. For steps on using the AWS Command Line Interface (AWS CLI) to configure credentials, see [CLI Configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
 
+# Basic Definitions:
+## What is Django Application?
+Django is an open-source web application framework written in Python
+
+Due to the built-in features such as an object-relational mapper (ORM), URL routing, authentication system, templating system, and more, it is a popular choice for developing web applications and APIs.
+
+## What is Docker Containerization?
+Containerization in cloud computing is a procedure to obtain operating system virtualization. 
+The user can work with a program and its dependencies utilizing remote resource procedures. 
+The container in cloud computing is used to construct blocks, which aid in producing operational effectiveness, version control, developer productivity, and environmental stability. 
+The infrastructure is upgraded since it provides additional control over the granular activities of the resources. 
+The usage of containers in online services assists storage with cloud computing data security, elasticity, and availability. 
+Containers provide certain advantages such as a steady runtime environment, the ability to run virtually anywhere, and the low overhead compared to virtual machines.
+
 
 # Creating an IAM User (StudentUser01)
 Log in to the AWS Management Console as the **root** user.
