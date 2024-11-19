@@ -47,7 +47,7 @@
 ## Deployment Workflow  
 The diagram below illustrates the deployment process:  
 
-![Deployment Workflow](images/seminar_overall_flow_2.jpeg)
+![Deployment Workflow](images/seminar_overall_flow_3.jpeg)
 
 
 ### ⚡ Let's Build Cloud Solutions Together in following the 'Labs' folders!  
