@@ -919,7 +919,7 @@ This YAML file defines the configuration for a Kubernetes Deployment, Service, a
 
 ---
 
-## **1. Deployment**
+### **1. Deployment**
 - **API Version**: `apps/v1` specifies the Kubernetes API version for deployments.  
 - **Kind**: Defines this resource as a **Deployment**.  
 - **Metadata**:  
@@ -940,9 +940,7 @@ This YAML file defines the configuration for a Kubernetes Deployment, Service, a
           - **Requests**: Ensures at least `500m` (0.5 CPU cores) are allocated.  
           - **Limits**: Caps usage to `750m` (0.75 CPU cores).  
 
----
-
-## **2. Service**
+### **2. Service**
 - **API Version**: `v1` specifies the Kubernetes API version for services.  
 - **Kind**: Defines this resource as a **Service**.  
 - **Metadata**:  
@@ -954,9 +952,7 @@ This YAML file defines the configuration for a Kubernetes Deployment, Service, a
     - Maps port `80` (HTTP) and `443` (HTTPS) to the container’s port `4000`.  
   - **Type**: `ClusterIP`, which exposes the Service internally in the cluster.  
 
----
-
-## **3. Ingress**
+### **3. Ingress**
 - **API Version**: `networking.k8s.io/v1` specifies the Kubernetes API version for Ingress resources.  
 - **Kind**: Defines this resource as an **Ingress**.  
 - **Metadata**:  
