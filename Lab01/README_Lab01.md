@@ -967,5 +967,73 @@ This YAML file defines the configuration for a Kubernetes Deployment, Service, a
 
 ---
 
+# --------------------------GITHUB CI/CD pipeline-------------------
+
+**# Step 1: Create a Workflow File**
+```
+mkdir -p .github/workflows
+```
+```
+touch .github/workflows/ci-cd-pipeline.yml
+```
+write following code in the yaml file:
+```
+--------
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'  # Change to the version your project requires
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Step 4: Run tests
+    - name: Run tests
+      run: |
+        python manage.py test
+
+  deploy:
+    needs: build-and-test  # Runs after the build-and-test job is successful
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to Server (Placeholder)
+      run: echo "Deployment step would go here"
+-------------
+```
+```
+git add .github/workflows/ci-cd-pipeline.yml
+```
+```
+git commit -m "Add CI/CD pipeline workflow"
+```
+```
+git push origin main
+```
+
+===========================
 
 
