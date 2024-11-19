@@ -41,6 +41,69 @@ DevOps is an amalgamation of two terms, Development and Operations. It has led t
 ## What is Cloud Load Balancing?
 It refers to splitting and distributing the incoming load to the server from various sources. It permits companies and organizations to govern and supervise workload demands or application demands by redistributing, reallocating, and administering resources between different computers, networks, or servers. Cloud load balancing encompasses holding the circulation of traffic and demands that exist over the Internet. This reduces the problem of sudden outages, results in an improvement in overall performance, has rare chances of server crashes and also provides an advanced level of security. Cloud-based server farms can accomplish more precise scalability and accessibility using the server load balancing mechanism. Due to this, the workload demands can be easily distributed and controlled.
 
+## Amazon Elastic Container Registry (ECR)  
+### **Definition**  
+Amazon Elastic Container Registry (ECR) is a fully managed container image registry that allows you to store, manage, and deploy Docker container images securely.  
+
+### **Key Features**  
+- Fully integrated with AWS services like **EKS**, **ECS**, and **AWS Lambda**.  
+- Provides high availability and secure, encrypted image storage.  
+- Supports both private and public repositories.  
+
+### **Use Cases**  
+- Hosting Docker container images for deployments.  
+- Storing container images for microservices architectures.  
+
+### **Example Workflow**  
+1. Build a Docker image locally.  
+2. Push the image to ECR.  
+3. Deploy the image using **EKS** or **ECS**.  
+
+---
+
+## Amazon Elastic Kubernetes Service (EKS)  
+### **Definition**  
+Amazon Elastic Kubernetes Service (EKS) is a managed Kubernetes service that simplifies running containerized applications at scale.  
+
+### **Key Features**  
+- Fully compatible with open-source Kubernetes.  
+- Manages the Kubernetes control plane for high availability.  
+- Integrates seamlessly with AWS services like **ECR**, **IAM**, and **CloudWatch**.  
+
+### **Use Cases**  
+- Deploying microservices-based architectures.  
+- Running large-scale, distributed container workloads.  
+- Utilizing Kubernetes’ orchestration without managing infrastructure.  
+
+### **Example Workflow**  
+1. Set up an EKS cluster.  
+2. Deploy containerized applications using Kubernetes YAML files.  
+3. Use an ELB for ingress and connect services to the cluster.  
+
+---
+
+## AWS Lambda  
+### **Definition**  
+AWS Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying infrastructure.  
+
+### **Key Features**  
+- Automatically scales based on the number of requests.  
+- Supports multiple programming languages (e.g., Python, Node.js, Java, Go).  
+- Seamlessly integrates with AWS services like S3, DynamoDB, and API Gateway.  
+
+### **Use Cases**  
+- Building event-driven architectures.  
+- Real-time file processing (e.g., resizing images uploaded to S3).  
+- Backend logic for mobile and web applications.  
+
+### **Example Workflow**  
+1. Upload your function code to Lambda.  
+2. Trigger the function via an event (e.g., S3 upload, DynamoDB change).  
+3. Lambda runs the code and scales as needed.
+
+
+
+
 
 
 # Creating an IAM User (StudentUser01)
