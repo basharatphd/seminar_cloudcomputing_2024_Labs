@@ -43,6 +43,11 @@
 - Conduct a Q&A session to address audience questions.  
 
 ---
+## Deployment Workflow  
+The diagram below illustrates the deployment process:  
+
+![Deployment Workflow](images/deployment.png)
+
 
 ### ⚡ Let's Build Cloud Solutions Together in following the 'Labs' folders!  
 This seminar will guide you through hands-on implementation and live demos to master AWS Cloud Computing concepts. 
