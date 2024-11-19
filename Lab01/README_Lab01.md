@@ -967,7 +967,7 @@ This YAML file defines the configuration for a Kubernetes Deployment, Service, a
 
 ---
 
-# --------------------------GITHUB CI/CD pipeline-------------------
+# ------------GITHUB CI/CD pipeline----------
 
 **# Step 1: Create a Workflow File**
 ```
