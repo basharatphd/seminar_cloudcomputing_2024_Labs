@@ -440,11 +440,14 @@ STS-Custom-policy-For-StudentUser01
 }
 ```
 Notedown user credentials and access keys
+
 User name	Password	Console sign-in URL
-StudentUser90	aUKU81|k	https://528383356345.signin.aws.amazon.com/console
+
+StudentUser90	****k	https://528383356345.signin.aws.amazon.com/console
 
 Access key ID	Secret access key
-AKIAXWBQ2FW4ZG6UFYHH	IMS5fkDQbZksOEYk0Mn/gDW8Nlz7T744xYk40j2U
+
+AKIAXWBQ2FW4ZG****	IMS5fkDQ****
 
 -- login and check the user from web console - see its permissions:
 user can view EC2 service resources
