@@ -5,5 +5,5 @@ https://www.youtube.com/watch?app=desktop&v=kvlSep7m7Uk&ab_channel=FelixYu
 ## Deployment Workflow  
 The diagram below illustrates the deployment process:  
 
-![Deployment Workflow](images/maxresdefault.jpg)
+![Deployment Workflow](../images/maxresdefault.jpg)
 
