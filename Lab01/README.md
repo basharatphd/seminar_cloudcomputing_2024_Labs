@@ -1,4 +1,4 @@
-# Cloud Computing
+# Cloud Computing - Lab 01
 ## LAB 01  Create and Configure an IAM User in AWS
 
 creating and configuring an IAM user
