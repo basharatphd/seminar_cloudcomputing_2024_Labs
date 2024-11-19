@@ -749,3 +749,115 @@ to check and run this ecr image:
 docker run -p 8002:8000 528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser90_my_app01_4_ecr:v1 
 ```
 
+
+
+# ----------------EKS Cluster-----------------
+This command is typically used to quickly set up a small, scalable Kubernetes cluster for development, testing, or lightweight production workloads. It ensures the cluster is ready to deploy containerized applications.
+This command will:
+
+- Create an EKS cluster named studentuser90-cluster in the us-east-1 region.
+- Add a managed node group called studentuser90-nodegroup.
+- Launch 2 EC2 instances of type t2.small as worker nodes.
+- Enable auto-scaling for the node group, allowing it to scale between 1 and 3 nodes based on demand.
+
+```
+eksctl create cluster \
+  --name studentuser90-cluster \
+  --region us-east-1 \
+  --nodegroup-name studentuser90-nodegroup \
+  --node-type t2.small \
+  --nodes 2 \
+  --nodes-min 1 \
+  --nodes-max 3 \
+  --managed
+```
+
+aws eks --region us-east-1 update-kubeconfig --name studentuser90-cluster
+
+kubectl get svc
+
+kubectl apply -f deployment.yaml
+
+kubectl get all
+
+kubectl port-forward service/my-student-app-01-svc 4000:80
+
+
+'create deployment.yaml'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-student-app-01
+  # namespace: student-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-student-app-01
+  template:
+    metadata:
+      labels:
+        app: my-student-app-01
+    spec:
+      containers:
+        - name: my-student-app-01
+          image: 528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser90_my_app01_4_ecr:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000         
+          resources:
+            requests:
+              cpu: 500m
+            limits:
+              cpu: 750m
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-student-app-01-svc
+  # namespace: student-ns
+  #annotations:
+  #  service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:503561417313:certificate/e829b5ed-0f5c-42db-94db-967078d61efc
+
+spec:
+  selector:
+    app: my-student-app-01
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4000
+    - name: https
+      port: 443
+      targetPort: 4000
+  type: ClusterIP
+  
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-student-ingress
+  #namespace: mulberrydb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    #alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:503561417313:certificate/e829b5ed-0f5c-42db-94db-967078d61efc
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-student-app-01-svc
+                port:
+                  number: 80
+				  
+				  
+
