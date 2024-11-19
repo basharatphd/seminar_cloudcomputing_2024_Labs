@@ -1,7 +1,7 @@
 # Seminar_Cloud Computing (Nov 2024) at Air University Campus (GulberGreens, Islamabad)
 
 # AWS Cloud Computing Seminar by: Basharat Hussain
-### Duration: 3 to 4 hours live skill development session
+### Duration: 3 to 4 hours live skill development session on AWS Cloud
 
 ## Seminar Goals  
 
