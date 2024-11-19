@@ -664,7 +664,7 @@ git push -u origin main
 
 
  # ---------------DOCKER-------------------
-breate a file named **`Dockerfile`** at the root location in django application (where manage.py exists)
+create a file named **`Dockerfile`** at the root location in django application (where manage.py exists)
 
 ```
 # Use the official Python image as a base
@@ -687,7 +687,7 @@ EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 ```
 
-### ** Run the following command to generate dependency requirement file **
+** Run the following command to generate dependency requirement file **
 ```
 pip freeze > requirements.txt
 ```
