@@ -709,3 +709,43 @@ http://localhost:8001
 ```
 docker ps -a
 ```
+
+
+# ----------------ECR Push-----------------
+
+AWS CLI client:>> 
+```
+aws configure
+```
+```
+aws sts get-caller-identity
+```
+```
+aws ecr describe-repositories
+```
+```
+aws ecr create-repository --repository-name studentuser90_my_app01_4_ecr
+```
+ 
+<read 'repositoryuri'> for eaxmaple 
+
+528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser90_my_app01_4_ecr
+ 
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser90_my_app01_4_ecr 
+```
+```
+docker tag studentuser90_my_app01:v1    528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser90_my_app01_4_ecr:v1
+```
+```
+docker push 528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser90_my_app01_4_ecr:v1
+```
+```
+docker images
+```
+ 
+to check and run this ecr image:
+```
+docker run -p 8002:8000 528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser90_my_app01_4_ecr:v1 
+```
+
