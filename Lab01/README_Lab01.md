@@ -624,6 +624,85 @@ path('success/', student_add_success_view, name='student_success'),
 path('list/', student_list_view, name='student_list'),
 ]
 ```
+---
 
 
- 
+## ------------------Github -------------------
+Click on the New repository button.
+Enter a repository name "StudentUser90_App_Repo", and make it public or private.
+Click Create repository (do not initialize with a README).
+
+# Initialize a Git Repository (if haven’t already)
+```
+git init
+```
+```
+(.venv) (base) zak@zak-VirtualBox:~/_src/03_CloudPractice_01/studentuser90_app01/student_project$ 
+git status
+```
+```
+git remote add origin https://github.com/basharatphd/StudentUser90_App_Repo.git
+```
+**# Add all files to staging**
+```
+git add .
+```
+
+```
+git config --global user.email "basharat.phd.2023@gmail.com"
+git config --global user.name "Basharat Hussain"
+```
+
+**# Commit your changes**
+```
+git commit -m "Initial commit"
+```
+**# Push your code to GitHub**
+```
+git push -u origin main  
+```
+
+
+ # ---------------DOCKER-------------------
+breate a file named **`Dockerfile`** at the root location in django application (where manage.py exists)
+
+```
+# Use the official Python image as a base
+FROM python:3.10-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the requirements file and install dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY . /app/
+
+# Expose the port on which Django runs
+EXPOSE 8000
+
+# Start the Django server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+```
+
+### ** Run the following command to generate dependency requirement file **
+```
+pip freeze > requirements.txt
+```
+```
+docker build -t studentuser90_my_app01:v1 .
+```
+```
+docker images
+```
+```
+docker run -p 8001:8000 studentuser90_my_app01:v1
+```
+```
+http://localhost:8001
+```
+```
+docker ps -a
+```
