@@ -689,7 +689,35 @@ EXPOSE 8000
 # Start the Django server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 ```
+### Explaination of the docker file
 
+- FROM python:3.10-slim:
+Uses the official Python 3.10 slim image as the base for the container.
+Provides a lightweight environment for running Python applications.
+
+- WORKDIR /app:
+Sets the working directory inside the container to /app.
+All subsequent commands will be executed within this directory.
+
+- COPY requirements.txt /app/:
+Copies the requirements.txt file from your local machine to the /app/ directory inside the container.
+
+- RUN pip install --no-cache-dir -r requirements.txt:
+Installs the Python dependencies listed in requirements.txt using pip.
+The --no-cache-dir flag prevents caching to reduce image size.
+
+- COPY . /app/:
+Copies the rest of the application code (excluding requirements.txt) into the /app/ directory inside the container.
+
+- EXPOSE 8000:
+Informs Docker that the container will listen on port 8000 (the default Django port).
+Allows external access to the application on this port.
+
+- CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]:
+Starts the Django development server when the container is run.
+Binds the server to 0.0.0.0:8000 to accept connections from outside the container.
+
+---
 ** Run the following command to generate dependency requirement file **
 ```
 pip freeze > requirements.txt
@@ -943,10 +971,5 @@ This YAML file defines the configuration for a Kubernetes Deployment, Service, a
 
 ---
 
-## **Summary**
-- **Deployment**: Creates a single pod running the application with specific CPU allocations, pulling an image from Amazon ECR, and exposing port `4000`.  
-- **Service**: Exposes the application internally within the cluster on ports `80` and `443`.  
-- **Ingress**: Configures an internet-facing AWS ALB to route HTTP/HTTPS traffic to the Service, enabling external access.  
 
- 
 
