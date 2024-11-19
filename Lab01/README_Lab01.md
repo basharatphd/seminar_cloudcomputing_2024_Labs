@@ -802,7 +802,13 @@ kubectl port-forward service/my-student-app-01-svc 4000:80
 
 ```
 
-'create deployment.yaml'
+Create **`deployment.yaml`** file in the django app in the same foler where manage.py lies. 
+
+it will contain:
+- **Deployment**: Creates a single pod running the application with specific CPU allocations, pulling an image from Amazon ECR, and exposing port 4000.
+- **Service**: Exposes the application internally within the cluster on ports 80 and 443.
+- **Ingress**: Configures an internet-facing AWS ALB to route HTTP/HTTPS traffic to the Service, enabling external access.
+
 ```
 ---
 apiVersion: apps/v1
@@ -878,6 +884,69 @@ spec:
                 port:
                   number: 80
 ```
+
+# Explanation of the YAML File  
+
+This YAML file defines the configuration for a Kubernetes Deployment, Service, and Ingress resource. Below is a brief breakdown of each section:
+
+---
+
+## **1. Deployment**
+- **API Version**: `apps/v1` specifies the Kubernetes API version for deployments.  
+- **Kind**: Defines this resource as a **Deployment**.  
+- **Metadata**:  
+  - **name**: The Deployment is named `my-student-app-01`.  
+  - Optionally, a namespace (`student-ns`) can be used for isolation (commented out).  
+- **Spec**:  
+  - **Replicas**: Configures **1 pod** to be running at all times.  
+  - **Selector**: Matches pods with the label `app: my-student-app-01`.  
+  - **Template**:  
+    - **Metadata**: Pods created by this Deployment will have the label `app: my-student-app-01`.  
+    - **Spec**:  
+      - **Container**:  
+        - **name**: Container name is `my-student-app-01`.  
+        - **image**: Uses a container image from Amazon ECR: `studentuser90_my_app01_4_ecr:v1`.  
+        - **imagePullPolicy**: Always pulls the latest version of the image.  
+        - **Ports**: Exposes container port `4000`.  
+        - **Resources**:  
+          - **Requests**: Ensures at least `500m` (0.5 CPU cores) are allocated.  
+          - **Limits**: Caps usage to `750m` (0.75 CPU cores).  
+
+---
+
+## **2. Service**
+- **API Version**: `v1` specifies the Kubernetes API version for services.  
+- **Kind**: Defines this resource as a **Service**.  
+- **Metadata**:  
+  - **name**: The Service is named `my-student-app-01-svc`.  
+  - Annotations for load balancer (e.g., SSL certificates) are commented out.  
+- **Spec**:  
+  - **Selector**: Targets pods labeled `app: my-student-app-01`.  
+  - **Ports**:  
+    - Maps port `80` (HTTP) and `443` (HTTPS) to the container’s port `4000`.  
+  - **Type**: `ClusterIP`, which exposes the Service internally in the cluster.  
+
+---
+
+## **3. Ingress**
+- **API Version**: `networking.k8s.io/v1` specifies the Kubernetes API version for Ingress resources.  
+- **Kind**: Defines this resource as an **Ingress**.  
+- **Metadata**:  
+  - **name**: The Ingress is named `my-student-ingress`.  
+  - **Annotations**:  
+    - Configures an AWS Application Load Balancer (ALB) with an internet-facing scheme.  
+    - Optional SSL certificate and redirection settings are included but commented out.  
+- **Spec**:  
+  - **IngressClassName**: Specifies the Ingress class as `alb` (AWS ALB).  
+  - **Rules**:  
+    - Routes all traffic (`/`) to the Service `my-student-app-01-svc` on port `80`.  
+
+---
+
+## **Summary**
+- **Deployment**: Creates a single pod running the application with specific CPU allocations, pulling an image from Amazon ECR, and exposing port `4000`.  
+- **Service**: Exposes the application internally within the cluster on ports `80` and `443`.  
+- **Ingress**: Configures an internet-facing AWS ALB to route HTTP/HTTPS traffic to the Service, enabling external access.  
 
  
 
