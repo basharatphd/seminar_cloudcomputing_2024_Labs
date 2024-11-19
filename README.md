@@ -1,6 +1,6 @@
 # Seminar_Cloud Computing (Nov 2024) at Air University Campus (GulberGreens, Islamabad)
 
-# AWS Cloud Computing Seminar  
+# AWS Cloud Computing Seminar by: Basharat Hussain  
 
 ## Seminar Goals  
 
