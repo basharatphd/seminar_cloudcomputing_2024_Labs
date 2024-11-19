@@ -35,6 +35,13 @@ The infrastructure is upgraded since it provides additional control over the gra
 The usage of containers in online services assists storage with cloud computing data security, elasticity, and availability. 
 Containers provide certain advantages such as a steady runtime environment, the ability to run virtually anywhere, and the low overhead compared to virtual machines.
 
+## What is DevOps?
+DevOps is an amalgamation of two terms, Development and Operations. It has led to Continuous Delivery, Integration, and Deployment therefore reducing boundaries between the development team and the operations team. Heavy applications and software need elaborate and complex tech stacks that demand extensive labor to develop and configure which can easily be eliminated by cloud computing. It offers a wide range of tools and technologies to build, test, and deploy applications within a few minutes and a single click. They can be customized as per the client’s requirements and can be discarded when not in use hence making the process seamless and cost-efficient for development teams.
+
+## What is Cloud Load Balancing?
+It refers to splitting and distributing the incoming load to the server from various sources. It permits companies and organizations to govern and supervise workload demands or application demands by redistributing, reallocating, and administering resources between different computers, networks, or servers. Cloud load balancing encompasses holding the circulation of traffic and demands that exist over the Internet. This reduces the problem of sudden outages, results in an improvement in overall performance, has rare chances of server crashes and also provides an advanced level of security. Cloud-based server farms can accomplish more precise scalability and accessibility using the server load balancing mechanism. Due to this, the workload demands can be easily distributed and controlled.
+
+
 
 # Creating an IAM User (StudentUser01)
 Log in to the AWS Management Console as the **root** user.
