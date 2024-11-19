@@ -632,7 +632,7 @@ Click on the New repository button.
 Enter a repository name "StudentUser90_App_Repo", and make it public or private.
 Click Create repository (do not initialize with a README).
 
-# Initialize a Git Repository (if haven’t already)
+**# Initialize a Git Repository (if haven’t already)**
 ```
 git init
 ```
