@@ -752,13 +752,25 @@ docker run -p 8002:8000 528383356345.dkr.ecr.us-east-1.amazonaws.com/studentuser
 
 
 # ----------------EKS Cluster-----------------
+
 This command is typically used to quickly set up a small, scalable Kubernetes cluster for development, testing, or lightweight production workloads. It ensures the cluster is ready to deploy containerized applications.
 This command will:
 
-- Create an EKS cluster named studentuser90-cluster in the us-east-1 region.
-- Add a managed node group called studentuser90-nodegroup.
-- Launch 2 EC2 instances of type t2.small as worker nodes.
-- Enable auto-scaling for the node group, allowing it to scale between 1 and 3 nodes based on demand.
+---
+
+## **Cluster Configuration**  
+
+- **Cluster Name**: `studentuser90-cluster`  
+- **Region**: `us-east-1`  
+- **Node Group Name**: `studentuser90-nodegroup`  
+- **Instance Type**: `t2.small`  
+- **Initial Number of Nodes**: `2`  
+- **Auto-Scaling**: Enabled (Min: `1`, Max: `3`)  
+
+---
+## Command Overview  
+The following command is used to create a managed Amazon EKS cluster using **eksctl**:  
+
 
 ```
 eksctl create cluster \
@@ -771,19 +783,27 @@ eksctl create cluster \
   --nodes-max 3 \
   --managed
 ```
-
+```
 aws eks --region us-east-1 update-kubeconfig --name studentuser90-cluster
-
+```
+```
 kubectl get svc
-
+```
+```
 kubectl apply -f deployment.yaml
 
+```
+```
 kubectl get all
 
+```
+```
 kubectl port-forward service/my-student-app-01-svc 4000:80
 
+```
 
 'create deployment.yaml'
+```
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -811,7 +831,6 @@ spec:
               cpu: 500m
             limits:
               cpu: 750m
-
 
 ---
 apiVersion: v1
@@ -858,6 +877,7 @@ spec:
                 name: my-student-app-01-svc
                 port:
                   number: 80
-				  
-				  
+```
+
+ 
 
